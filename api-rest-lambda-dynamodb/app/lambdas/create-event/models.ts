@@ -1,15 +1,14 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 //region Input request models
 export const CreateEventRequestSchema = z.object({
-    activityKey: z.string(),
+    activityKey: z.number().int(),
     startDate: z.date(),
     participants: z.array(z.object({
-        name: z.string(),
-        age: z.number()
+        firstName: z.string(),
+        lastName: z.string(),
+        age: z.number().int()
     })).nonempty()
-});
-
-export type CreateEventRequest = z.infer<typeof CreateEventRequestSchema>;
+}).strict();
 //endregion
 
